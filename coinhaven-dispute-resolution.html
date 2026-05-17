@@ -3,777 +3,657 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cleared — P2P Dispute Resolution | Vidhi Gupta</title>
+  <title>Cleared — P2P Dispute Resolution | Vidhi Gupta × Coinhaven</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0d0d;
-      --surface: #141414;
-      --surface-2: #1c1c1c;
-      --border: #262626;
-      --accent: #f5a623;
-      --accent-dim: rgba(245,166,35,0.12);
-      --accent-border: rgba(245,166,35,0.3);
-      --green: #22c55e;
-      --green-dim: rgba(34,197,94,0.1);
-      --red: #ef4444;
-      --red-dim: rgba(239,68,68,0.1);
-      --blue: #3b82f6;
-      --blue-dim: rgba(59,130,246,0.1);
-      --text: #e8e8e8;
-      --text-secondary: #888;
-      --text-tertiary: #555;
-      --mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
-      --serif: Georgia, 'Times New Roman', serif;
-      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --radius: 10px;
-      --radius-sm: 6px;
+      /* ── Coinhaven brand palette ── */
+      --navy:       #00004C;
+      --navy-mid:   #00006E;
+      --blue:       #001DC6;
+      --blue-light: #4E51FF;
+      --blue-pale:  rgba(78,81,255,0.12);
+      --blue-border:rgba(78,81,255,0.28);
+      --green:      #26E29C;
+      --green-dim:  rgba(38,226,156,0.12);
+      --green-border:rgba(38,226,156,0.3);
+      --red:        #F55959;
+      --red-dim:    rgba(245,89,89,0.1);
+      --lavender:   #D9DAF2;
+      --light-bg:   #F7F7FB;
+      --light-mid:  #EBEBF1;
+
+      /* Dark section tokens */
+      --dark-bg:      var(--navy);
+      --dark-surface: rgba(0,0,80,0.6);
+      --dark-surface2:rgba(0,29,198,0.15);
+      --dark-border:  rgba(78,81,255,0.2);
+      --dark-text:    #FFFFFF;
+      --dark-text-2:  rgba(255,255,255,0.65);
+      --dark-text-3:  rgba(255,255,255,0.35);
+
+      /* Light section tokens */
+      --light-text:   #00004C;
+      --light-text-2: #444488;
+      --light-text-3: #8888AA;
+      --light-border: #D9DAF2;
+      --light-surface:#FFFFFF;
+
+      --mono: 'SF Mono','Fira Code','Fira Mono',monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --radius: 12px;
+      --radius-sm: 8px;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
-      color: var(--text);
       font-family: var(--sans);
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      background: var(--navy);
+      color: var(--dark-text);
     }
 
-    /* ── Nav ── */
+    /* ─── Alternating section backgrounds ─── */
+    .section-dark  { background: var(--navy); color: var(--dark-text); }
+    .section-light { background: var(--light-bg); color: var(--light-text); }
+    .section-mid   { background: var(--light-mid); color: var(--light-text); }
+
+    /* ─── Nav ─── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(13,13,13,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(0,0,76,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--dark-border);
       padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 58px;
     }
-
     .nav-brand {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 700; color: #fff; text-decoration: none;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
+    .nav-logo {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: #fff;
     }
-
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      font-size: 13px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-size: 13px; color: var(--dark-text-2);
+      text-decoration: none; transition: color 0.2s;
     }
+    .nav-links a:hover { color: #fff; }
 
-    .nav-links a:hover { color: var(--text); }
+    /* ─── Layout ─── */
+    .container { max-width: 880px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
+    section.section-dark  { border-bottom: 1px solid var(--dark-border); }
+    section.section-light { border-bottom: 1px solid var(--light-border); }
+    section.section-mid   { border-bottom: 1px solid var(--light-border); }
 
-    /* ── Layout ── */
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    section {
-      padding: 5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    section:last-of-type { border-bottom: none; }
-
-    /* ── Labels ── */
+    /* ─── Section label ─── */
     .section-label {
       font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      display: block;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      display: block; margin-bottom: 1.1rem;
     }
+    .section-dark  .section-label { color: var(--green); }
+    .section-light .section-label { color: var(--blue-light); }
+    .section-mid   .section-label { color: var(--blue-light); }
 
-    /* ── Typography ── */
+    /* ─── Headings ─── */
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800; line-height: 1.12;
+      letter-spacing: -0.025em; margin-bottom: 1.25rem;
     }
-
-    h1 em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
+    h1 em { font-style: normal; color: var(--green); }
     h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.75rem;
+      font-size: 1.65rem; font-weight: 700;
+      letter-spacing: -0.01em; margin-bottom: 0.6rem;
     }
+    h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.45rem; }
 
-    h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
+    .section-dark  h2, .section-dark  h3 { color: var(--dark-text); }
+    .section-light h2, .section-light h3 { color: var(--light-text); }
+    .section-mid   h2, .section-mid   h3 { color: var(--light-text); }
 
-    p {
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-    }
-
+    p { margin-bottom: 1rem; }
     p:last-child { margin-bottom: 0; }
+    .section-dark  p { color: var(--dark-text-2); }
+    .section-light p { color: var(--light-text-2); }
+    .section-mid   p { color: var(--light-text-2); }
 
     blockquote {
-      border-left: 2px solid var(--accent);
-      padding: 0.75rem 1.25rem;
+      border-left: 3px solid var(--green);
+      padding: 0.8rem 1.25rem;
       margin: 1.5rem 0;
-      background: var(--accent-dim);
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-style: italic;
-      color: var(--text);
-      font-size: 0.95rem;
+      font-style: italic; font-size: 0.95rem;
     }
+    .section-dark blockquote { background: rgba(38,226,156,0.07); color: #fff; }
+    .section-light blockquote { background: var(--green-dim); color: var(--light-text); }
 
-    /* ── Hero ── */
-    #hero {
-      padding: 6rem 0 5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .meta-chip {
-      font-family: var(--mono);
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-    }
-
-    .meta-chip span { color: var(--text); }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin-bottom: 2.5rem;
-      line-height: 1.6;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 10px 20px;
-      background: var(--accent);
-      color: #000;
-      font-weight: 600;
-      font-size: 13px;
-      border-radius: var(--radius-sm);
-      text-decoration: none;
+    /* ─── Buttons ─── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 11px 22px;
+      background: var(--green); color: var(--navy);
+      font-weight: 700; font-size: 13px; letter-spacing: 0.03em;
+      border-radius: var(--radius-sm); text-decoration: none;
       transition: opacity 0.2s;
     }
+    .btn-primary:hover { opacity: 0.88; }
 
-    .hero-cta:hover { opacity: 0.85; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px;
+      border: 1.5px solid var(--blue-light); color: var(--blue-light);
+      font-weight: 600; font-size: 13px;
+      border-radius: var(--radius-sm); text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-outline:hover { background: var(--blue-pale); }
 
-    /* ── Mockup ── */
+    /* ─── Hero ─── */
+    #hero { padding: 5.5rem 0 5rem; }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;
+    }
+    .meta-chip {
+      font-family: var(--mono); font-size: 10px;
+      padding: 4px 11px; border-radius: 20px;
+      border: 1px solid var(--dark-border);
+      color: var(--dark-text-2);
+    }
+    .meta-chip span { color: var(--green); }
+    .hero-sub {
+      font-size: 1.1rem; line-height: 1.65;
+      color: var(--dark-text-2); max-width: 620px; margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ─── Hero mockup ─── */
     .hero-mockup {
       margin-top: 3rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: rgba(0,0,60,0.8);
+      border: 1px solid var(--dark-border);
       border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: 0 0 60px rgba(78,81,255,0.18), 0 2px 40px rgba(0,0,0,0.5);
     }
-
     .mockup-topbar {
-      background: var(--surface-2);
-      border-bottom: 1px solid var(--border);
+      background: rgba(0,29,198,0.25);
+      border-bottom: 1px solid var(--dark-border);
       padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
     }
-
     .dot { width: 10px; height: 10px; border-radius: 50%; }
     .dot-r { background: #ff5f56; }
     .dot-y { background: #ffbd2e; }
     .dot-g { background: #27c93f; }
-
     .mockup-title {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-tertiary);
-      margin-left: 8px;
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dark-text-3); margin-left: 8px;
     }
-
     .mockup-body { padding: 1.5rem; }
 
+    /* Flow diagram */
     .dispute-flow {
       display: grid;
-      grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr;
-      align-items: center;
-      gap: 0;
-      margin-bottom: 1.5rem;
+      grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
+      align-items: center; gap: 0; margin-bottom: 1.5rem;
     }
-
     .flow-step {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
+      background: rgba(0,29,198,0.2);
+      border: 1px solid var(--dark-border);
       border-radius: var(--radius-sm);
-      padding: 0.75rem;
-      text-align: center;
+      padding: 0.75rem; text-align: center;
     }
-
-    .flow-step.active { border-color: var(--accent); background: var(--accent-dim); }
-    .flow-step.resolved { border-color: var(--green); background: var(--green-dim); }
-
-    .flow-step-label {
-      font-family: var(--mono);
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-tertiary);
-      display: block;
-      margin-bottom: 2px;
+    .flow-step.active {
+      border-color: var(--green);
+      background: rgba(38,226,156,0.1);
     }
-
-    .flow-step-name {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text);
+    .flow-step.done {
+      border-color: rgba(78,81,255,0.5);
+      background: rgba(78,81,255,0.12);
     }
-
-    .flow-step.active .flow-step-name { color: var(--accent); }
-    .flow-step.resolved .flow-step-name { color: var(--green); }
-
-    .flow-step-time {
-      font-size: 10px;
-      color: var(--text-tertiary);
-      margin-top: 2px;
+    .flow-step-lbl {
+      font-family: var(--mono); font-size: 9px;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--dark-text-3); display: block; margin-bottom: 2px;
     }
+    .flow-step-name { font-size: 11px; font-weight: 700; color: var(--dark-text); }
+    .flow-step.active .flow-step-name { color: var(--green); }
+    .flow-step.done   .flow-step-name { color: var(--blue-light); }
+    .flow-step-time { font-size: 10px; color: var(--dark-text-3); margin-top: 2px; }
+    .flow-arrow { text-align: center; color: var(--dark-text-3); font-size: 14px; }
 
-    .flow-arrow {
-      text-align: center;
-      color: var(--text-tertiary);
-      font-size: 14px;
-    }
-
+    /* Chat window */
     .chat-window {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
+      background: rgba(0,0,30,0.6);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-sm); overflow: hidden;
     }
-
     .chat-header {
-      background: var(--surface-2);
-      padding: 8px 12px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: rgba(0,29,198,0.3);
+      border-bottom: 1px solid var(--dark-border);
+      padding: 10px 14px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
     .chat-header-left { display: flex; align-items: center; gap: 8px; }
-
     .chat-avatar {
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--blue-pale); border: 1.5px solid var(--blue-light);
       display: flex; align-items: center; justify-content: center;
-      font-size: 10px; color: var(--accent);
+      font-size: 11px; font-weight: 700; color: var(--blue-light);
     }
-
-    .chat-name { font-size: 12px; font-weight: 600; }
-    .chat-status { font-size: 10px; color: var(--text-tertiary); }
-
+    .chat-name { font-size: 12px; font-weight: 700; color: #fff; }
+    .chat-status { font-size: 10px; color: var(--dark-text-3); }
     .escrow-badge {
-      font-family: var(--mono);
-      font-size: 9px;
-      padding: 3px 8px;
-      border-radius: 20px;
-      border: 1px solid var(--accent-border);
-      color: var(--accent);
-      background: var(--accent-dim);
+      font-family: var(--mono); font-size: 9px;
+      padding: 3px 9px; border-radius: 20px;
+      border: 1px solid var(--green-border);
+      color: var(--green); background: var(--green-dim);
+      letter-spacing: 0.04em;
     }
-
     .chat-messages { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-
-    .msg {
-      display: flex;
-      flex-direction: column;
-      max-width: 75%;
-    }
-
+    .msg { display: flex; flex-direction: column; max-width: 76%; }
     .msg.buyer { align-self: flex-start; }
     .msg.seller { align-self: flex-end; }
-
     .msg-bubble {
-      padding: 8px 12px;
-      border-radius: 12px;
-      font-size: 12px;
-      line-height: 1.5;
+      padding: 9px 13px; border-radius: 12px;
+      font-size: 12px; line-height: 1.55;
     }
-
     .msg.buyer .msg-bubble {
-      background: var(--surface-2);
-      color: var(--text);
+      background: rgba(0,29,198,0.3);
+      border: 1px solid var(--dark-border);
+      color: var(--dark-text);
       border-bottom-left-radius: 4px;
     }
-
     .msg.seller .msg-bubble {
-      background: var(--blue-dim);
-      border: 1px solid rgba(59,130,246,0.2);
-      color: var(--text);
+      background: rgba(78,81,255,0.18);
+      border: 1px solid var(--blue-border);
+      color: var(--dark-text);
       border-bottom-right-radius: 4px;
     }
-
-    .msg-meta { font-size: 10px; color: var(--text-tertiary); margin-top: 2px; }
+    .msg-meta { font-size: 10px; color: var(--dark-text-3); margin-top: 3px; }
     .msg.seller .msg-meta { text-align: right; }
-
     .chat-resolution {
       margin: 8px 12px 12px;
-      background: var(--green-dim);
-      border: 1px solid rgba(34,197,94,0.2);
+      background: rgba(38,226,156,0.1);
+      border: 1px solid var(--green-border);
       border-radius: var(--radius-sm);
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 9px 13px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .resolution-text { font-size: 12px; color: var(--green); font-weight: 500; }
+    .resolution-text { font-size: 12px; color: var(--green); font-weight: 600; }
     .resolution-btn {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      background: var(--green);
-      color: #000;
-      border-radius: 4px;
-      cursor: pointer;
+      font-size: 11px; font-weight: 700;
+      padding: 5px 12px; background: var(--green);
+      color: var(--navy); border-radius: 5px; cursor: pointer;
+      letter-spacing: 0.03em;
     }
 
-    /* ── Cards ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
+    /* ─── Cards (dark) ─── */
+    .card-dark {
+      background: var(--dark-surface2);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius); padding: 1.5rem;
     }
+    .card-dark + .card-dark { margin-top: 1rem; }
+    .card-dark h3 { color: #fff; }
+    .card-dark p  { color: var(--dark-text-2); }
+    .card-dark blockquote { background: rgba(38,226,156,0.07); }
 
-    .card + .card { margin-top: 1rem; }
-
-    /* ── Research blocks ── */
-    .research-grid {
-      display: grid;
-      gap: 1rem;
-      margin-top: 1.5rem;
+    /* ─── Cards (light) ─── */
+    .card-light {
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius); padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,76,0.06);
     }
+    .card-light + .card-light { margin-top: 1rem; }
+    .card-light h3 { color: var(--light-text); }
+    .card-light p  { color: var(--light-text-2); }
 
+    /* ─── Research blocks ─── */
+    .research-grid { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
     .research-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
+      background: var(--dark-surface2);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
     }
-
     .research-source {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.05em;
+      font-family: var(--mono); font-size: 10px;
+      color: var(--green); margin-bottom: 0.5rem; letter-spacing: 0.06em;
     }
-
-    .research-finding {
-      font-size: 0.9rem;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
+    .research-finding { font-size: 0.9rem; color: var(--dark-text); margin-bottom: 0.5rem; }
     .research-interp {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      padding-top: 0.5rem;
-      border-top: 1px solid var(--border);
+      font-size: 0.85rem; color: var(--dark-text-2);
+      padding-top: 0.6rem; border-top: 1px solid var(--dark-border);
     }
+    .research-interp strong { color: var(--dark-text-3); font-weight: 500; }
 
-    .research-interp strong { color: var(--text-tertiary); }
-
-    /* ── Personas ── */
-    .persona-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+    /* ─── Highlight box (dark) ─── */
+    .highlight-dark {
+      background: rgba(38,226,156,0.07);
+      border: 1px solid var(--green-border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
       margin-top: 1.5rem;
     }
+    .highlight-dark .hl-title {
+      font-size: 13px; font-weight: 700;
+      color: var(--green); display: block; margin-bottom: 0.4rem;
+    }
+    .highlight-dark p { color: var(--dark-text-2); }
 
-    @media (max-width: 600px) { .persona-grid { grid-template-columns: 1fr; } }
+    /* ─── Highlight box (light) ─── */
+    .highlight-light {
+      background: rgba(0,29,198,0.06);
+      border: 1px solid rgba(0,29,198,0.18);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .highlight-light .hl-title {
+      font-size: 13px; font-weight: 700;
+      color: var(--blue); display: block; margin-bottom: 0.4rem;
+    }
+    .highlight-light p { color: var(--light-text-2); }
 
+    /* ─── Personas ─── */
+    .persona-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 1.5rem;
+    }
+    @media(max-width:600px){ .persona-grid { grid-template-columns: 1fr; } }
     .persona-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius); padding: 1.5rem;
+      box-shadow: 0 2px 14px rgba(0,0,76,0.07);
     }
-
     .persona-emoji { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
-    .persona-name { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
-    .persona-desc { font-size: 12px; color: var(--text-tertiary); margin-bottom: 1rem; }
-
-    .persona-row { margin-bottom: 0.75rem; }
+    .persona-name  { font-size: 1rem; font-weight: 700; color: var(--light-text); margin-bottom: 2px; }
+    .persona-desc  { font-size: 12px; color: var(--light-text-3); margin-bottom: 1rem; }
+    .persona-row   { margin-bottom: 0.75rem; }
     .persona-row-label {
-      font-family: var(--mono);
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-tertiary);
-      display: block;
-      margin-bottom: 2px;
+      font-family: var(--mono); font-size: 9px;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--blue-light); display: block; margin-bottom: 2px;
     }
-
-    .persona-row-val { font-size: 13px; color: var(--text-secondary); }
-
+    .persona-row-val { font-size: 13px; color: var(--light-text-2); }
     .persona-quote {
-      font-size: 12px;
-      font-style: italic;
-      color: var(--text-secondary);
-      border-left: 2px solid var(--accent);
-      padding-left: 10px;
-      margin-top: 1rem;
+      font-size: 12px; font-style: italic;
+      color: var(--light-text-2);
+      border-left: 2px solid var(--blue-light);
+      padding-left: 10px; margin-top: 1rem;
     }
 
-    /* ── Competitive table ── */
+    /* ─── Competitive table ─── */
     .table-wrap { overflow-x: auto; margin-top: 1.5rem; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
     thead th {
-      background: var(--surface-2);
-      padding: 10px 14px;
-      text-align: left;
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      border-bottom: 1px solid var(--border);
+      background: rgba(0,29,198,0.08);
+      padding: 10px 14px; text-align: left;
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--light-text-3);
+      border-bottom: 2px solid var(--light-border);
     }
-
     tbody td {
       padding: 12px 14px;
-      border-bottom: 1px solid var(--border);
-      color: var(--text-secondary);
-      vertical-align: top;
+      border-bottom: 1px solid var(--light-border);
+      color: var(--light-text-2); vertical-align: top;
     }
-
     tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover td { background: var(--surface); }
-    tbody td:first-child { color: var(--text); font-weight: 500; }
-
+    tbody tr:hover td { background: rgba(0,29,198,0.04); }
+    tbody td:first-child { color: var(--light-text); font-weight: 600; }
     .tag {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 4px;
-      margin: 1px;
+      display: inline-block; font-family: var(--mono);
+      font-size: 9px; padding: 2px 7px; border-radius: 4px; margin: 1px;
+      font-weight: 600; letter-spacing: 0.04em;
     }
+    .tag-green  { background: var(--green-dim); color: #008855; border: 1px solid rgba(38,226,156,0.3); }
+    .tag-red    { background: var(--red-dim); color: #bb2222; border: 1px solid rgba(245,89,89,0.25); }
+    .tag-yellow { background: rgba(0,29,198,0.08); color: var(--blue); border: 1px solid rgba(0,29,198,0.2); }
+    .tag-coinhaven { background: var(--green-dim); color: #007744; border: 1px solid var(--green-border); }
 
-    .tag-green { background: var(--green-dim); color: var(--green); }
-    .tag-red { background: var(--red-dim); color: var(--red); }
-    .tag-yellow { background: var(--accent-dim); color: var(--accent); }
-
-    /* ── PIF ── */
+    /* ─── PIF ─── */
     .pif-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      margin: 1.5rem 0;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem; margin: 1.5rem 0;
     }
-
-    @media (max-width: 600px) { .pif-grid { grid-template-columns: 1fr; } }
-
+    @media(max-width:600px){ .pif-grid { grid-template-columns: 1fr; } }
     .pif-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius); padding: 1.4rem;
       text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,76,0.06);
     }
-
     .pif-score {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.25rem;
+      font-size: 3.2rem; font-weight: 800;
+      color: var(--blue-light); line-height: 1; margin-bottom: 0.25rem;
     }
-
-    .pif-label { font-size: 13px; font-weight: 600; margin-bottom: 0.5rem; }
-    .pif-desc { font-size: 12px; color: var(--text-tertiary); }
-
+    .pif-label { font-size: 13px; font-weight: 700; color: var(--light-text); margin-bottom: 0.4rem; }
+    .pif-desc  { font-size: 12px; color: var(--light-text-3); }
     .pif-total {
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
+      background: var(--navy);
+      border: 1px solid rgba(78,81,255,0.35);
+      border-radius: var(--radius); padding: 1.25rem 1.75rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pif-total-score { font-size: 2rem; font-weight: 800; color: var(--green); }
+    .pif-total-label { font-size: 14px; font-weight: 700; color: #fff; }
+    .pif-total-sub   { font-size: 12px; color: var(--dark-text-2); }
+
+    /* ─── Problem statement box ─── */
+    .problem-box {
+      background: var(--navy);
+      border: 1.5px solid rgba(78,81,255,0.35);
       border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 1.5rem; margin-top: 1rem;
+    }
+    .problem-box p {
+      font-size: 1rem; font-weight: 500;
+      color: rgba(255,255,255,0.9); line-height: 1.7;
     }
 
-    .pif-total-score {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
-
-    .pif-total-label { font-size: 14px; color: var(--text); }
-    .pif-total-sub { font-size: 12px; color: var(--text-secondary); }
-
-    /* ── Design decisions ── */
-    .decision-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1px; }
-
+    /* ─── Design decisions ─── */
+    .decision-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 2px; }
     .decision-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
       border-radius: var(--radius-sm);
-      padding: 1.25rem 1.5rem;
+      padding: 1.3rem 1.5rem;
+      transition: border-color 0.2s;
     }
-
-    .decision-item:first-child { border-radius: var(--radius) var(--radius) var(--radius-sm) var(--radius-sm); }
-    .decision-item:last-child { border-radius: var(--radius-sm) var(--radius-sm) var(--radius) var(--radius); }
-
+    .decision-item:hover { border-color: var(--blue-light); }
     .decision-label {
-      font-family: var(--mono);
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 4px;
+      font-family: var(--mono); font-size: 9px;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--blue-light); margin-bottom: 4px;
     }
+    .decision-text { font-size: 14px; font-weight: 700; color: var(--light-text); margin-bottom: 0.5rem; }
+    .decision-why  { font-size: 13px; color: var(--light-text-2); line-height: 1.65; }
+    .decision-why strong { color: var(--light-text-3); font-weight: 500; }
 
-    .decision-text { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
-    .decision-why { font-size: 13px; color: var(--text-secondary); }
-    .decision-why strong { color: var(--text-tertiary); }
-
-    /* ── Tier mechanics ── */
+    /* ─── Tier mechanics ─── */
     .tier-grid { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
-
-    .tier-row {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 1rem;
-      align-items: start;
+    .tier-row  {
+      display: grid; grid-template-columns: 175px 1fr;
+      gap: 1rem; align-items: start;
     }
-
-    @media (max-width: 600px) { .tier-row { grid-template-columns: 1fr; } }
-
-    .tier-badge {
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius-sm);
-      text-align: center;
-    }
-
-    .tier-badge.t1 { background: var(--green-dim); border: 1px solid rgba(34,197,94,0.25); }
-    .tier-badge.t2 { background: var(--accent-dim); border: 1px solid var(--accent-border); }
-    .tier-badge.t3 { background: var(--red-dim); border: 1px solid rgba(239,68,68,0.2); }
-
-    .tier-num { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    @media(max-width:600px){ .tier-row { grid-template-columns: 1fr; } }
+    .tier-badge { padding: 0.7rem 1rem; border-radius: var(--radius-sm); text-align: center; }
+    .tier-badge.t1 { background: var(--green-dim);        border: 1.5px solid var(--green-border); }
+    .tier-badge.t2 { background: rgba(78,81,255,0.1);     border: 1.5px solid var(--blue-border); }
+    .tier-badge.t3 { background: var(--red-dim);          border: 1.5px solid rgba(245,89,89,0.28); }
+    .tier-num  { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
     .tier-badge.t1 .tier-num { color: var(--green); }
-    .tier-badge.t2 .tier-num { color: var(--accent); }
+    .tier-badge.t2 .tier-num { color: var(--blue-light); }
     .tier-badge.t3 .tier-num { color: var(--red); }
-
-    .tier-name { font-size: 13px; font-weight: 600; color: var(--text); margin-top: 2px; }
-    .tier-time { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
-
+    .tier-name { font-size: 13px; font-weight: 700; color: var(--light-text); margin-top: 3px; }
+    .tier-time { font-size: 11px; color: var(--light-text-3); margin-top: 3px; }
     .tier-details {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1rem 1.25rem;
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius-sm); padding: 1rem 1.25rem;
+      box-shadow: 0 1px 8px rgba(0,0,76,0.05);
     }
-
-    .tier-detail-row { font-size: 13px; color: var(--text-secondary); margin-bottom: 0.3rem; }
+    .tier-detail-row { font-size: 13px; color: var(--light-text-2); margin-bottom: 0.35rem; }
     .tier-detail-row:last-child { margin-bottom: 0; }
-    .tier-detail-row span { color: var(--text); font-weight: 500; }
+    .tier-detail-row span { color: var(--light-text); font-weight: 600; }
 
-    /* ── Metrics ── */
+    /* ─── Metrics ─── */
     .metrics-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 1.5rem;
     }
-
-    @media (max-width: 600px) { .metrics-grid { grid-template-columns: 1fr; } }
-
+    @media(max-width:600px){ .metrics-grid { grid-template-columns: 1fr; } }
     .metric-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
+      background: var(--navy);
+      border: 1px solid rgba(78,81,255,0.25);
+      border-radius: var(--radius); padding: 1.4rem;
+      box-shadow: 0 0 24px rgba(78,81,255,0.08);
     }
-
     .metric-value {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.25rem;
+      font-size: 2.4rem; font-weight: 800;
+      color: var(--green); line-height: 1; margin-bottom: 0.3rem;
     }
-
-    .metric-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
-    .metric-desc { font-size: 12px; color: var(--text-tertiary); }
-
+    .metric-label { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
+    .metric-desc  { font-size: 12px; color: var(--dark-text-2); }
     .guardrail-box {
       margin-top: 1rem;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
+      background: rgba(0,29,198,0.12);
+      border: 1px solid rgba(78,81,255,0.22);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
     }
-
     .guardrail-title {
-      font-family: var(--mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-tertiary);
-      margin-bottom: 0.75rem;
+      font-family: var(--mono); font-size: 10px;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--dark-text-3); margin-bottom: 0.75rem;
     }
-
     .guardrail-item {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-bottom: 0.35rem;
-      padding-left: 1rem;
-      position: relative;
+      font-size: 13px; color: var(--dark-text-2);
+      margin-bottom: 0.35rem; padding-left: 1rem; position: relative;
     }
+    .guardrail-item::before { content: '—'; position: absolute; left: 0; color: var(--dark-text-3); }
 
-    .guardrail-item::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--text-tertiary);
-    }
-
-    /* ── Pre-mortem ── */
+    /* ─── Pre-mortem ─── */
     .premortem-grid { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
-
     .pm-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius); padding: 1.3rem 1.5rem;
     }
-
-    .pm-type {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .pm-type.tiger { color: var(--red); }
-    .pm-type.elephant { color: var(--accent); }
-
-    .pm-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-    .pm-body { font-size: 13px; color: var(--text-secondary); margin-bottom: 0.75rem; }
+    .pm-type { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; margin-bottom: 0.5rem; }
+    .pm-type.tiger    { color: var(--red); }
+    .pm-type.elephant { color: var(--blue); }
+    .pm-title { font-size: 14px; font-weight: 700; color: var(--light-text); margin-bottom: 0.4rem; }
+    .pm-body  { font-size: 13px; color: var(--light-text-2); margin-bottom: 0.75rem; line-height: 1.65; }
     .pm-mitigation {
-      font-size: 12px;
-      color: var(--text-tertiary);
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--light-text-3);
+      padding-top: 0.75rem; border-top: 1px solid var(--light-border);
     }
+    .pm-mitigation strong { color: var(--light-text-2); }
 
-    .pm-mitigation strong { color: var(--text-secondary); }
-
-    /* ── Validate next ── */
+    /* ─── Validate next ─── */
     .validate-grid { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
-
     .validate-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
+      background: var(--navy);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius); padding: 1.3rem 1.5rem;
     }
+    .validate-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .validate-body  { font-size: 13px; color: var(--dark-text-2); line-height: 1.65; }
 
-    .validate-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-    .validate-body { font-size: 13px; color: var(--text-secondary); }
+    /* ─── Closing CTA ─── */
+    #closing {
+      background: var(--blue);
+      text-align: center; padding: 5rem 0;
+      border-bottom: none;
+    }
+    #closing h2 { color: #fff; font-size: 2rem; margin-bottom: 1rem; }
+    #closing p  { color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto 2rem; font-size: 1rem; }
 
-    /* ── Footer ── */
+    /* ─── Footer ─── */
     footer {
-      padding: 3rem 0;
-      text-align: center;
-      border-top: 1px solid var(--border);
+      background: var(--navy);
+      border-top: 1px solid var(--dark-border);
+      padding: 2.5rem 0; text-align: center;
     }
+    footer p { font-size: 13px; color: var(--dark-text-3); }
+    .footer-brand { color: var(--green); font-weight: 600; }
 
-    footer p { font-size: 13px; color: var(--text-tertiary); }
-
-    .footer-brand { color: var(--accent); font-weight: 600; }
-
-    /* ── Utility ── */
+    /* ─── Utility ─── */
     .mt-6 { margin-top: 1.5rem; }
     .mt-4 { margin-top: 1rem; }
 
-    .highlight-box {
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      margin-top: 1.5rem;
+    /* ─── Trading ticker bar ─── */
+    .ticker-bar {
+      background: rgba(0,0,60,0.95);
+      border-bottom: 1px solid var(--dark-border);
+      padding: 8px 0; overflow: hidden;
     }
-
-    .highlight-box p { color: var(--text); }
-
-    .validated-pattern {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
-      display: block;
-      margin-bottom: 0.4rem;
+    .ticker-inner {
+      display: flex; gap: 2rem;
+      padding: 0 2rem; justify-content: space-around;
     }
+    .ticker-item { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .ticker-pair { font-family: var(--mono); font-size: 11px; color: var(--dark-text-3); letter-spacing: 0.06em; }
+    .ticker-price { font-family: var(--mono); font-size: 12px; font-weight: 700; color: #fff; }
+    .ticker-change { font-family: var(--mono); font-size: 10px; font-weight: 600; }
+    .ticker-change.up   { color: var(--green); }
+    .ticker-change.down { color: var(--red); }
   </style>
 </head>
 <body>
 
-<!-- ── Navigation ── -->
+<!-- ── Ticker bar ── -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <div class="ticker-item">
+      <span class="ticker-pair">CHV/USDT</span>
+      <span class="ticker-price">15.85</span>
+      <span class="ticker-change up">+3.56%</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-pair">BTC/USDT</span>
+      <span class="ticker-price">9,441.38</span>
+      <span class="ticker-change up">+0.73%</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-pair">ETH/USDT</span>
+      <span class="ticker-price">235.57</span>
+      <span class="ticker-change up">+2.17%</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-pair">EOS/USDT</span>
+      <span class="ticker-price">2.55</span>
+      <span class="ticker-change up">+0.79%</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-pair">LTC/USDT</span>
+      <span class="ticker-price">43.62</span>
+      <span class="ticker-change up">+0.59%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Nav ── -->
 <nav>
-  <a class="nav-brand" href="#">Cleared</a>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo">C</div>
+    Coinhaven
+  </a>
   <ul class="nav-links">
     <li><a href="#problem">Problem</a></li>
     <li><a href="#personas">Personas</a></li>
@@ -784,21 +664,26 @@
 </nav>
 
 <!-- ── Hero ── -->
-<section id="hero">
+<section id="hero" class="section-dark">
   <div class="container">
-    <span class="section-label">Portfolio Case Study</span>
+    <span class="section-label">Portfolio Case Study · Coinhaven GmbH</span>
 
     <h1>P2P trading needed<br><em>trust infrastructure.</em><br>I built it from scratch.</h1>
 
     <div class="hero-meta">
       <div class="meta-chip">Product <span>Coinhaven GmbH</span></div>
       <div class="meta-chip">Type <span>0-to-1 System Design</span></div>
-      <div class="meta-chip">Role <span>Founding PM</span></div>
-      <div class="meta-chip">Year <span>2021–2022</span></div>
+      <div class="meta-chip">Role <span>Founding PM · 1st PM hire</span></div>
+      <div class="meta-chip">Year <span>Berlin, 2021–2022</span></div>
       <div class="meta-chip">Author <span>Vidhi Gupta</span></div>
     </div>
 
-    <p class="hero-sub">Coinhaven was a pre-PMF crypto trading platform. When we launched P2P trading, we had no dispute infrastructure — every conflict was a manual CS burden and a trust risk that compounded with volume. I designed and shipped the dispute resolution system from zero: in-platform counterparty chat, structured escalation tiers, escrow-protected fund management, and a risk-profile-linked resolution framework.</p>
+    <p class="hero-sub">Coinhaven was a pre-PMF crypto trading platform. When P2P volume grew, every dispute landed in a single CS queue — no triage, no counterparty channel, no self-resolution path. I designed and shipped the full dispute resolution system from zero: in-platform counterparty chat, structured escalation tiers, escrow-protected fund management, and a resolution framework linked to the platform's KYC risk profiles.</p>
+
+    <div class="hero-btns">
+      <a class="btn-primary" href="#solution">See the solution →</a>
+      <a class="btn-outline" href="#metrics">View outcomes</a>
+    </div>
 
     <!-- Mockup -->
     <div class="hero-mockup">
@@ -806,45 +691,43 @@
         <div class="dot dot-r"></div>
         <div class="dot dot-y"></div>
         <div class="dot dot-g"></div>
-        <span class="mockup-title">Cleared — Dispute Resolution · Coinhaven</span>
+        <span class="mockup-title">Cleared — Dispute Resolution System · Coinhaven</span>
       </div>
       <div class="mockup-body">
 
-        <!-- Flow diagram -->
         <div class="dispute-flow">
-          <div class="flow-step resolved">
-            <span class="flow-step-label">Trade</span>
+          <div class="flow-step done">
+            <span class="flow-step-lbl">Trade</span>
             <div class="flow-step-name">Matched</div>
             <div class="flow-step-time">t = 0</div>
           </div>
           <div class="flow-arrow">›</div>
           <div class="flow-step active">
-            <span class="flow-step-label">T1</span>
+            <span class="flow-step-lbl">Tier 1</span>
             <div class="flow-step-name">Counterparty Chat</div>
             <div class="flow-step-time">0 – 24h</div>
           </div>
           <div class="flow-arrow">›</div>
           <div class="flow-step">
-            <span class="flow-step-label">T2</span>
+            <span class="flow-step-lbl">Tier 2</span>
             <div class="flow-step-name">CS Review</div>
             <div class="flow-step-time">24 – 48h</div>
           </div>
           <div class="flow-arrow">›</div>
           <div class="flow-step">
-            <span class="flow-step-label">T3</span>
+            <span class="flow-step-lbl">Tier 3</span>
             <div class="flow-step-name">Platform Decision</div>
             <div class="flow-step-time">36 – 72h</div>
           </div>
         </div>
 
-        <!-- Chat window -->
         <div class="chat-window">
           <div class="chat-header">
             <div class="chat-header-left">
               <div class="chat-avatar">B</div>
               <div>
-                <div class="chat-name">Dispute #1042 · 0.18 BTC</div>
-                <div class="chat-status">Buyer · Seller · In-platform resolution thread</div>
+                <div class="chat-name">Dispute #1042 · 0.18 BTC · Tier 1</div>
+                <div class="chat-status">Buyer &amp; Seller · In-platform resolution thread</div>
               </div>
             </div>
             <div class="escrow-badge">Funds in escrow</div>
@@ -863,13 +746,13 @@
               <div class="msg-meta">Buyer · 14:14</div>
             </div>
             <div class="msg seller">
-              <div class="msg-bubble">Confirmed — payment received. Marking as resolved.</div>
+              <div class="msg-bubble">Confirmed — payment received. Marking this as resolved.</div>
               <div class="msg-meta">Seller · 15:02</div>
             </div>
           </div>
           <div class="chat-resolution">
             <div class="resolution-text">Both parties agreed — funds ready for release</div>
-            <div class="resolution-btn">Release Funds</div>
+            <div class="resolution-btn">RELEASE FUNDS</div>
           </div>
         </div>
 
@@ -879,46 +762,46 @@
 </section>
 
 <!-- ── Problem Discovery ── -->
-<section id="problem">
+<section id="problem" class="section-dark">
   <div class="container">
     <span class="section-label">02 Problem Discovery</span>
     <h2>How I found the problem</h2>
     <p>It wasn't a complaint we received. It was a structural ceiling we saw coming.</p>
 
-    <div class="card mt-6">
+    <div class="card-dark mt-6">
       <h3>The trigger</h3>
-      <p>As P2P trading volume grew, CS ticket volume scaled with it — linearly, and without any natural resolution mechanism. Every dispute, regardless of size or complexity, followed the same path: one CS agent, manual back-and-forth with both parties, email threads, individual clarification calls, approval chains. The smallest payment confirmation dispute took the same minimum 2+ days to reach first response as a high-value fraud escalation.</p>
-      <p>We projected forward. At the growth rate we were seeing in P2P adoption, CS capacity would become the hard ceiling on how much volume the platform could responsibly handle. The choice was binary: hire aggressively into CS (expensive, slow, and brittle), or build a resolution infrastructure that resolved disputes without CS involvement wherever possible.</p>
-      <blockquote>"10–12% of P2P transactions triggered a dispute. Every single one landed in the same queue. CS couldn't triage by severity — there was no mechanism to do so."</blockquote>
+      <p>As P2P trading volume grew, CS ticket volume scaled with it — linearly, and without any resolution mechanism. Every dispute, regardless of size or complexity, followed the same path: one CS agent, manual outreach to both parties, email threads, clarification cycles, approval chains based on risk profile, then fund release. The smallest payment confirmation dispute took the same minimum 2-day wait to first response as a high-value fraud escalation.</p>
+      <p>We projected forward. At the growth rate we were seeing in P2P adoption, CS capacity would become the hard ceiling on volume the platform could responsibly handle. The choice was binary: hire aggressively into CS — expensive, slow, and brittle at scale — or build resolution infrastructure that could handle disputes without CS involvement wherever possible.</p>
+      <blockquote>"10–12% of P2P transactions triggered a dispute. Every one landed in the same queue. CS had no way to triage by severity — there was no mechanism to do so."</blockquote>
     </div>
 
     <div class="research-grid mt-6">
       <div class="research-item">
-        <div class="research-source">P2P platform pattern — Crypto exchanges</div>
-        <div class="research-finding">Established P2P exchanges (LocalBitcoins, Binance P2P) report that 8–15% of trades result in some form of dispute or appeal. The majority are resolved at the counterparty level when a structured communication channel exists.</div>
-        <div class="research-interp"><strong>Interpretation:</strong> Our 10–12% dispute rate was within normal range. The problem wasn't dispute frequency — it was the total absence of a self-resolution layer.</div>
+        <div class="research-source">P2P platform benchmarks — Crypto exchanges</div>
+        <div class="research-finding">Established P2P exchanges report 8–15% of trades resulting in some form of dispute or appeal. The majority are resolved at counterparty level when a structured communication channel exists — without any CS involvement.</div>
+        <div class="research-interp"><strong>Interpretation:</strong> Our 10–12% dispute rate was within the normal range for P2P crypto platforms. The problem wasn't dispute frequency — it was the complete absence of a self-resolution layer before CS.</div>
       </div>
       <div class="research-item">
         <div class="research-source">Internal CS data — Pre-launch baseline</div>
-        <div class="research-finding">All disputes routed directly to CS via ticket. Minimum 2 days to first response. Post-response, each dispute required multiple back-and-forth cycles — individual outreach to buyer, individual outreach to seller, clarification loops, approval by risk profile, then fund release. No differentiation between a £20 payment confirmation and a £2,000 fraud escalation.</div>
-        <div class="research-interp"><strong>Interpretation:</strong> The system was optimised for nothing. No triage, no self-resolution, no fast path for simple disputes. CS time was the only resource — and it was being consumed uniformly regardless of dispute value or complexity.</div>
+        <div class="research-finding">All disputes routed directly to CS via ticket. Minimum 2 days to first response. Each dispute required multiple back-and-forth cycles: individual outreach to buyer, individual outreach to seller, clarification loops, approval per risk profile, then fund release. No differentiation between a small payment confirmation and a large fraud escalation.</div>
+        <div class="research-interp"><strong>Interpretation:</strong> The system was optimised for nothing. No triage, no self-resolution, no fast path for simple cases. CS time was the only resource — consumed uniformly regardless of dispute size or complexity.</div>
       </div>
       <div class="research-item">
         <div class="research-source">Capacity modelling</div>
-        <div class="research-finding">At projected P2P volume growth, CS headcount required to maintain existing SLAs would need to increase 3–4x within 18 months. Cost per dispute resolution was trending upward as CS time was fixed and dispute volume was not.</div>
-        <div class="research-interp"><strong>Interpretation:</strong> Hiring was not a strategy — it was a delay. The only durable solution was infrastructure that could resolve disputes without CS involvement for the majority of cases.</div>
+        <div class="research-finding">At projected P2P volume growth, CS headcount required to maintain existing SLAs would need to increase 3–4x within 18 months. Cost per dispute was trending upward with no ceiling. Hiring was not a strategy — it was a delay.</div>
+        <div class="research-interp"><strong>Interpretation:</strong> The only durable solution was infrastructure that resolved the majority of disputes without CS involvement. Headcount scaling is linear. Infrastructure scales better.</div>
       </div>
     </div>
 
-    <div class="highlight-box">
-      <span class="validated-pattern">The validated pattern</span>
-      <p>P2P platforms cannot scale dispute volume on CS headcount alone. Without a structured, tiered resolution mechanism — self-resolution first, CS second, platform arbitration last — every new P2P trade is a potential CS ticket. Trust in a P2P marketplace is not built through policies. It is built through infrastructure that users can see working in real time.</p>
+    <div class="highlight-dark">
+      <span class="hl-title">The validated pattern</span>
+      <p>P2P platforms cannot scale dispute volume on CS headcount alone. Without a structured, tiered resolution mechanism — self-resolution first, CS second, platform arbitration last — every new P2P trade is a potential CS ticket. Trust on a P2P marketplace is not built through policy. It is built through infrastructure that users can see working in real time.</p>
     </div>
   </div>
 </section>
 
 <!-- ── Personas ── -->
-<section id="personas">
+<section id="personas" class="section-light">
   <div class="container">
     <span class="section-label">03 User Research</span>
     <h2>Who this is for</h2>
@@ -929,18 +812,17 @@
         <span class="persona-emoji">👤</span>
         <div class="persona-name">Amir, 31</div>
         <div class="persona-desc">Berlin — KYC Tier 2 buyer, regular P2P user</div>
-
         <div class="persona-row">
           <span class="persona-row-label">JTBD</span>
           <div class="persona-row-val">Complete my trade and see the funds released — without waiting days for someone to manually verify what I've already proven</div>
         </div>
         <div class="persona-row">
           <span class="persona-row-label">Behaviour</span>
-          <div class="persona-row-val">Sends payment → waits → no confirmation → files support ticket → waits again. Each step is opaque. He has no visibility into where his dispute is or who owns it.</div>
+          <div class="persona-row-val">Sends payment → waits → no confirmation → files support ticket → waits again. Each step is opaque. No visibility into where his dispute is or who owns it.</div>
         </div>
         <div class="persona-row">
           <span class="persona-row-label">Business impact</span>
-          <div class="persona-row-val">A slow, opaque resolution is indistinguishable from a broken platform. If Amir's funds are stuck for 4+ days, he does not return to P2P. That is churn disguised as a dispute.</div>
+          <div class="persona-row-val">A slow, opaque resolution is indistinguishable from a broken platform. If Amir's funds are stuck for 4+ days, he doesn't return to P2P. That's churn disguised as a dispute.</div>
         </div>
         <div class="persona-quote">"I've sent the bank reference three times. No one has replied. I don't know if this is a scam or just slow."</div>
       </div>
@@ -949,18 +831,17 @@
         <span class="persona-emoji">🏪</span>
         <div class="persona-name">Lena, 38</div>
         <div class="persona-desc">Hamburg — KYC Tier 3 seller, high-volume trader</div>
-
         <div class="persona-row">
           <span class="persona-row-label">JTBD</span>
-          <div class="persona-row-val">Resolve disputes quickly without my account being flagged or my trade limits reduced — and have my side heard before any platform decision is made</div>
+          <div class="persona-row-val">Resolve disputes quickly without my account being flagged or trade limits reduced — and have my side heard before any platform decision is made</div>
         </div>
         <div class="persona-row">
           <span class="persona-row-label">Behaviour</span>
-          <div class="persona-row-val">Legitimate seller with occasional payment delays from buyers. Gets flagged in disputes she didn't initiate. Needs a structured channel to provide evidence — not just a ticket that disappears.</div>
+          <div class="persona-row-val">Legitimate seller with occasional buyer payment delays. Gets pulled into disputes she didn't initiate. Needs a structured channel to present evidence, not a ticket that disappears.</div>
         </div>
         <div class="persona-row">
           <span class="persona-row-label">Business impact</span>
-          <div class="persona-row-val">High-volume sellers like Lena create the liquidity that makes P2P viable. Losing her — or reducing her trust in the fairness of dispute resolution — removes supply from the marketplace.</div>
+          <div class="persona-row-val">High-volume sellers create the liquidity that makes P2P viable. Losing Lena — or eroding her confidence in dispute fairness — removes supply from the marketplace.</div>
         </div>
         <div class="persona-quote">"The payment was late, not missing. But there's no way to explain that in a support ticket. I need to talk to the other person."</div>
       </div>
@@ -969,7 +850,7 @@
 </section>
 
 <!-- ── Competitive ── -->
-<section id="competitive">
+<section id="competitive" class="section-mid">
   <div class="container">
     <span class="section-label">04 Competitive Landscape</span>
     <h2>What the market was doing</h2>
@@ -981,100 +862,99 @@
           <tr>
             <th>Platform</th>
             <th>Dispute mechanism</th>
-            <th>Self-resolution layer?</th>
+            <th>Self-resolution?</th>
             <th>Risk-profile linked?</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Binance P2P</td>
-            <td>In-app appeal with 15-minute window for counterparty response before CS escalation. Chat + evidence upload.</td>
-            <td><span class="tag tag-green">Partial</span></td>
+            <td>In-app appeal with 15-min counterparty window before CS escalation. Chat + evidence upload.</td>
+            <td><span class="tag tag-yellow">Partial</span></td>
             <td><span class="tag tag-red">No</span></td>
           </tr>
           <tr>
             <td>LocalBitcoins</td>
-            <td>Dispute button triggers mediator. No structured counterparty chat — CS owns resolution from the start.</td>
+            <td>Dispute button triggers mediator. No counterparty chat — CS owns resolution from the start.</td>
             <td><span class="tag tag-red">None</span></td>
             <td><span class="tag tag-red">No</span></td>
           </tr>
           <tr>
             <td>Paxful</td>
-            <td>Timed dispute window with in-chat evidence. Arbitrator assigned after 1h. Trade escrow held throughout.</td>
+            <td>Timed window with in-chat evidence. Arbitrator assigned after 1h. Trade escrow held throughout.</td>
             <td><span class="tag tag-green">Yes</span></td>
             <td><span class="tag tag-red">No</span></td>
           </tr>
           <tr>
             <td>Hodl Hodl</td>
-            <td>Multi-sig escrow — dispute resolution built into the contract, not a separate system. No CS involvement.</td>
+            <td>Multi-sig escrow — resolution built into the contract structure. No CS involvement by design.</td>
             <td><span class="tag tag-green">Yes</span></td>
             <td><span class="tag tag-red">No</span></td>
           </tr>
           <tr>
-            <td>Traditional fintech (e.g. Wise disputes)</td>
-            <td>Fully CS-owned. Ticket → investigation → decision. No counterparty channel. Average 3–5 business days.</td>
+            <td>Traditional fintech</td>
+            <td>Fully CS-owned. Ticket → investigation → decision. No counterparty channel. 3–5 business days average.</td>
             <td><span class="tag tag-red">None</span></td>
             <td><span class="tag tag-yellow">Partial</span></td>
           </tr>
-          <tr>
-            <td><strong>Coinhaven — Cleared</strong></td>
-            <td>Three-tier: counterparty chat → CS review → platform arbitration. Escrow throughout. Resolution path and trade limits linked to KYC risk profile. Self-resolution closes the majority without CS.</td>
-            <td><span class="tag tag-green">Yes — T1</span></td>
-            <td><span class="tag tag-green">Yes</span></td>
+          <tr style="background:rgba(38,226,156,0.04);">
+            <td>Coinhaven — Cleared</td>
+            <td>Three-tier: counterparty chat → CS review → platform arbitration. Escrow throughout. Resolution authority linked to KYC risk profile. Majority of disputes close at T1 without CS.</td>
+            <td><span class="tag tag-coinhaven">Yes — T1</span></td>
+            <td><span class="tag tag-coinhaven">Yes</span></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="highlight-box" style="margin-top:1.5rem;">
-      <span class="validated-pattern">The gap no one had filled</span>
-      <p>Every platform that had a self-resolution layer treated all disputes equally — the same flow regardless of dispute value, user history, or KYC verification level. The structural innovation in Cleared was linking resolution path authority directly to risk profile: what a user could approve, release, or escalate depended on who they were verified to be.</p>
+    <div class="highlight-light">
+      <span class="hl-title">The gap no one had filled</span>
+      <p>Every platform with a self-resolution layer treated all disputes equally — same flow regardless of dispute value, user history, or verification level. The structural distinction in Cleared was linking resolution authority directly to KYC risk profile: what a user could approve, release, or escalate depended on who they were verified to be.</p>
     </div>
   </div>
 </section>
 
-<!-- ── Problem Prioritisation ── -->
-<section id="prioritisation">
+<!-- ── Prioritisation ── -->
+<section id="prioritisation" class="section-light">
   <div class="container">
     <span class="section-label">05 Problem Prioritisation</span>
     <h2>Why this problem, why now</h2>
-    <p>PIF Framework — Population × Intensity × Frequency. Three dimensions. Dispute infrastructure scored maximum across all of them at our stage.</p>
+    <p>PIF Framework — Population × Intensity × Frequency. Dispute infrastructure scored maximum across all three at our stage.</p>
 
     <div class="pif-grid">
       <div class="pif-card">
         <div class="pif-score">5</div>
         <div class="pif-label">Population</div>
-        <div class="pif-desc">Every P2P user was exposed. 10–12% of trades triggered a dispute — not a segment problem, a platform problem.</div>
+        <div class="pif-desc">Every P2P user was exposed. 10–12% of trades triggered a dispute — not a segment edge case, a platform-wide pattern.</div>
       </div>
       <div class="pif-card">
         <div class="pif-score">5</div>
         <div class="pif-label">Intensity</div>
-        <div class="pif-desc">Stuck funds and silent CS queues are the highest-intensity user experience failure on a financial platform. This destroys trust permanently — users don't complain, they leave and warn others.</div>
+        <div class="pif-desc">Stuck funds and silent CS queues are the highest-intensity failure on a financial platform. Users don't complain — they leave and warn others.</div>
       </div>
       <div class="pif-card">
         <div class="pif-score">5</div>
         <div class="pif-label">Frequency</div>
-        <div class="pif-desc">P2P dispute volume scaled with trade volume. Without infrastructure, every new active P2P user was a recurring CS cost. The problem compounded daily.</div>
+        <div class="pif-desc">Dispute volume scaled with P2P trade volume. Without infrastructure, every new active P2P user was a recurring CS cost compounding daily.</div>
       </div>
     </div>
 
     <div class="pif-total">
       <div>
-        <div class="pif-total-label">15 / 15 — P0</div>
-        <div class="pif-total-sub">Maximum score across all three dimensions. Non-negotiable for P2P viability.</div>
+        <div class="pif-total-label">15 / 15 — P0 Priority</div>
+        <div class="pif-total-sub">Maximum score. Non-negotiable for P2P viability at scale.</div>
       </div>
       <div class="pif-total-score">P0</div>
     </div>
 
-    <div class="card mt-6">
-      <h3>The problem statement</h3>
-      <p style="color:var(--text); font-size:1rem; font-weight:500;">P2P traders at Coinhaven who enter a dispute have no mechanism to communicate with their counterparty, no visibility into resolution status, no path to self-resolution, and no differentiation by risk level. Every dispute — regardless of size, complexity, or user trust level — is processed identically through a CS queue with a minimum 2-day wait. This is not a support problem. It is a trust infrastructure gap that makes scaling P2P volume operationally impossible.</p>
+    <div class="problem-box mt-4">
+      <p>P2P traders at Coinhaven who enter a dispute have no mechanism to communicate with their counterparty, no visibility into resolution status, no path to self-resolution, and no differentiation by risk level. Every dispute — regardless of size, complexity, or user trust level — is processed identically through a CS queue with a minimum 2-day wait. This is not a support problem. It is a trust infrastructure gap that makes scaling P2P volume operationally impossible.</p>
     </div>
   </div>
 </section>
 
 <!-- ── Solution ── -->
-<section id="solution">
+<section id="solution" class="section-light">
   <div class="container">
     <span class="section-label">06 The Solution — Design Decisions</span>
     <h2>Cleared — every decision has a reason</h2>
@@ -1084,43 +964,43 @@
       <div class="decision-item">
         <div class="decision-label">Decision</div>
         <div class="decision-text">Three-tier escalation, not direct CS routing</div>
-        <div class="decision-why"><strong>Why:</strong> Routing all disputes to CS immediately was the status quo — and it was the ceiling. The first design decision was to introduce a counterparty chat layer (T1) where the majority of disputes — payment confirmations, timing delays, receipt disputes — could self-resolve without any CS involvement. CS capacity was freed for the disputes that actually needed it. T3 (platform arbitration) was reserved for edge cases only: high-risk profile involvement or deadlocked T2 cases. In practice, T3 was rare.</div>
+        <div class="decision-why"><strong>Why:</strong> Routing all disputes to CS was the status quo — and the ceiling. The first design decision was to introduce a counterparty chat layer (T1) where the majority of disputes — payment confirmations, timing delays, receipt disputes — could self-resolve with no CS involvement at all. CS capacity was freed for disputes that genuinely needed it. T3 platform arbitration was reserved for edge cases only: high-risk profile involvement or deadlocked T2 cases. In practice, T3 was rare.</div>
       </div>
       <div class="decision-item">
         <div class="decision-label">Decision</div>
-        <div class="decision-text">Funds held in escrow throughout the dispute lifecycle</div>
-        <div class="decision-why"><strong>Why:</strong> The alternative was to hold funds only if CS flagged the trade. This was rejected immediately. Escrow protection had to be automatic on dispute initiation — not discretionary. A dispute raised by either party triggered an immediate fund block. This removed the incentive for a bad actor to pressure the counterparty outside the platform, because neither party could access the funds regardless of the other's behaviour. Release required explicit agreement at the resolution tier reached.</div>
+        <div class="decision-text">Funds held in escrow automatically on dispute initiation — not at CS discretion</div>
+        <div class="decision-why"><strong>Why:</strong> The alternative was to hold funds only if CS flagged the trade. This was rejected immediately. Escrow protection had to be automatic the moment a dispute was raised — not discretionary. A dispute by either party triggered an immediate fund block. This removed the incentive for a bad actor to pressure the counterparty outside the platform, because neither party could access the funds regardless of the other's behaviour.</div>
       </div>
       <div class="decision-item">
         <div class="decision-label">Decision</div>
-        <div class="decision-text">Self-resolution trigger: mutual agreement in T1 chat → automatic fund release</div>
-        <div class="decision-why"><strong>Why:</strong> Manual release approval for every resolved dispute would have put CS back in the loop even for disputes they never needed to touch. If both counterparties confirmed resolution within the T1 chat, funds were released automatically. This was the mechanism that made T1 meaningful — not just a communication channel, but a resolution pathway with an actual outcome. It required trusting the counterparty interaction log as the source of truth, which in turn drove the design of the in-platform chat (timestamped, immutable, visible to CS in case of escalation).</div>
+        <div class="decision-text">Mutual agreement in T1 chat → automatic fund release, no CS loop</div>
+        <div class="decision-why"><strong>Why:</strong> Manual release approval for every resolved dispute would have put CS back in the loop even for disputes they never needed to touch. If both counterparties confirmed resolution in T1 chat, funds released automatically. This made T1 a genuine resolution pathway — not just a communication channel. The chat log became the source of truth: timestamped, immutable, fully visible to CS on any escalation.</div>
       </div>
       <div class="decision-item">
         <div class="decision-label">Decision</div>
-        <div class="decision-text">24h user-triggered CS escalation, not automatic timer</div>
-        <div class="decision-why"><strong>Why:</strong> We considered auto-escalating to T2 after 24h regardless of counterparty chat status. This was rejected because it would flood CS with disputes still in active dialogue. Instead, the user could request CS escalation at any point if they felt T1 was deadlocked — and the system auto-triggered T2 if 24 hours elapsed with no resolution and no escalation request. This kept the escalation user-driven first, and time-bounded second. It also gave CS a clean signal: any T2 ticket meant T1 had genuinely failed.</div>
+        <div class="decision-text">24h user-triggered escalation, not automatic timer</div>
+        <div class="decision-why"><strong>Why:</strong> Auto-escalating to T2 after 24h regardless of chat status would have flooded CS with disputes still in active dialogue. Instead, the user could request CS escalation at any point — and the system auto-triggered T2 if 24 hours elapsed with no resolution and no escalation request. This kept escalation user-driven first, time-bounded second. Any T2 ticket meant T1 had genuinely failed — a clean signal for CS.</div>
       </div>
       <div class="decision-item">
         <div class="decision-label">Decision</div>
-        <div class="decision-text">Resolution authority and trade limits linked to KYC risk profile — not uniform across all users</div>
-        <div class="decision-why"><strong>Why:</strong> Treating a fully verified Tier 3 user identically to an unverified Tier 1 user in a high-value dispute was both a trust failure and a risk failure. The risk profiling engine already governed trade amounts and transaction limits. Dispute resolution was extended into the same framework: the level of KYC verification determined what a user could approve (fund release at T1), what required CS countersignature, and what required CEO/founder-level sign-off (high-risk profile, large fund settlement). This was not a separate system — it was an extension of the trust architecture already in place.</div>
+        <div class="decision-text">Resolution authority linked to KYC risk profile, not uniform across all users</div>
+        <div class="decision-why"><strong>Why:</strong> Treating a fully-verified Tier 3 user identically to an unverified Tier 1 user in a high-value dispute was both a trust failure and a risk failure. The risk profiling engine already governed trade amounts and transaction limits. Dispute resolution was extended into the same framework: KYC tier determined what a user could approve at T1, what required CS countersignature at T2, and what required founder-level sign-off at T3. One trust architecture, not two parallel systems.</div>
       </div>
       <div class="decision-item">
         <div class="decision-label">Decision</div>
-        <div class="decision-text">Repeat dispute actors flagged and risk-profile downgraded, not individually managed</div>
-        <div class="decision-why"><strong>Why:</strong> A user who initiated multiple disputes — particularly disputes that resolved against them — should face lower trade limits and higher scrutiny, not a one-off case review each time. The system was designed to feed dispute outcomes back into the risk engine: repeat flagged actors moved to lower tiers, reducing their trade limits and transaction approvals. In the most severe cases, accounts were blocked and funds frozen pending review. This closed the loop between dispute behaviour and platform access — making abuse of the dispute system structurally costly.</div>
+        <div class="decision-text">Repeat dispute actors downgraded in the risk engine — not case-managed individually</div>
+        <div class="decision-why"><strong>Why:</strong> A user who initiated multiple disputes — particularly disputes that resolved against them — should face structurally lower trade limits and higher scrutiny, not a manual review each time. Dispute outcomes fed back into the risk engine: repeat flagged actors moved to lower tiers, reducing trade limits. In severe cases, accounts were blocked and funds frozen pending review. This made abuse of the dispute system structurally costly, not just inconvenient.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── Mechanics ── -->
-<section id="mechanics">
+<section id="mechanics" class="section-mid">
   <div class="container">
     <span class="section-label">07 System Mechanics</span>
     <h2>How the tiers worked</h2>
-    <p>Each tier had a defined scope, time boundary, resolution authority, and fund release condition. The system was designed so that each escalation left a complete evidence trail for the next tier.</p>
+    <p>Each tier had a defined scope, time boundary, resolution authority, and fund release condition. Every escalation carried a complete evidence trail to the next tier.</p>
 
     <div class="tier-grid">
       <div class="tier-row">
@@ -1134,8 +1014,8 @@
           <div class="tier-detail-row">Fund status: <span>Automatically blocked in escrow on dispute initiation</span></div>
           <div class="tier-detail-row">Channel: <span>In-platform timestamped chat between buyer and seller only</span></div>
           <div class="tier-detail-row">Resolution: <span>Mutual agreement in chat → automatic fund release. No CS involved.</span></div>
-          <div class="tier-detail-row">Escalation: <span>User-requested at any point, or auto-triggered after 24h with no resolution</span></div>
-          <div class="tier-detail-row">Covers: <span>~90% of disputes — payment confirmations, receipt verification, timing delays</span></div>
+          <div class="tier-detail-row">Escalation: <span>User-requested at any point, or auto-triggered at 24h with no resolution</span></div>
+          <div class="tier-detail-row">Coverage: <span>~90% of disputes — payment confirmations, receipt verification, timing delays</span></div>
         </div>
       </div>
 
@@ -1148,8 +1028,8 @@
         <div class="tier-details">
           <div class="tier-detail-row">Trigger: <span>User request or 24h T1 expiry with no mutual resolution</span></div>
           <div class="tier-detail-row">CS access: <span>Full T1 chat log, trade details, both user risk profiles, KYC tier, transaction history</span></div>
-          <div class="tier-detail-row">CS action: <span>Reviews evidence, contacts both parties within the platform, makes a resolution recommendation</span></div>
-          <div class="tier-detail-row">Fund release: <span>CS-approved release once a resolution is confirmed. Risk-profile determines whether CS can release unilaterally or requires countersignature.</span></div>
+          <div class="tier-detail-row">CS action: <span>Reviews evidence, contacts both parties within the platform, reaches a resolution decision</span></div>
+          <div class="tier-detail-row">Fund release: <span>CS-approved release once resolved. KYC tier determines whether CS releases unilaterally or requires countersignature.</span></div>
           <div class="tier-detail-row">Escalation: <span>Deadlocked T2 or high-risk profile involvement → T3</span></div>
         </div>
       </div>
@@ -1162,10 +1042,10 @@
         </div>
         <div class="tier-details">
           <div class="tier-detail-row">Trigger: <span>T2 deadlock, high-risk profile on either side, or large fund settlement requiring elevated approval</span></div>
-          <div class="tier-detail-row">Decision authority: <span>CEO / founder-level involvement for highest-severity cases. Platform makes a binding decision.</span></div>
+          <div class="tier-detail-row">Decision authority: <span>CEO / founder-level for highest-severity cases. Platform makes a binding decision.</span></div>
           <div class="tier-detail-row">Fund release: <span>Platform-decided — can release to either party, split, or freeze pending further investigation</span></div>
-          <div class="tier-detail-row">Outcome: <span>Binding. Results fed back to risk engine — dispute actors flagged, trade limits adjusted, accounts blocked if warranted.</span></div>
-          <div class="tier-detail-row">Frequency: <span>Rare by design. T1 self-resolution absorbed the majority of volume; T3 existed for genuine edge cases.</span></div>
+          <div class="tier-detail-row">Outcome: <span>Binding. Results fed back into the risk engine — accounts flagged, trade limits adjusted, accounts blocked if warranted.</span></div>
+          <div class="tier-detail-row">Frequency: <span>Rare by design. T1 self-resolution absorbed the majority; T3 existed for genuine edge cases only.</span></div>
         </div>
       </div>
     </div>
@@ -1173,27 +1053,27 @@
 </section>
 
 <!-- ── Metrics ── -->
-<section id="metrics">
+<section id="metrics" class="section-dark">
   <div class="container">
     <span class="section-label">08 Success Metrics</span>
     <h2>How we knew it was working</h2>
-    <p>Four metrics. Each tied to a specific behaviour the system was designed to move. If a metric didn't change a decision, it wasn't tracked.</p>
+    <p>Four metrics. Each tied to a specific behaviour the system was designed to move.</p>
 
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-value">90%</div>
         <div class="metric-label">CS deflection rate</div>
-        <div class="metric-desc">Post-launch, CS involvement dropped to 10% of disputes. ~60% reduction in dispute-related support queries overall. The majority of disputes were resolved at T1 — between counterparties — without any CS touch.</div>
+        <div class="metric-desc">Post-launch, CS involvement dropped to 10% of disputes — a ~60% reduction in dispute-related support queries overall. The majority of disputes resolved at T1, between counterparties, without any CS touch.</div>
       </div>
       <div class="metric-card">
         <div class="metric-value">–2 days</div>
         <div class="metric-label">Minimum resolution time</div>
-        <div class="metric-desc">Before: all disputes required a minimum 2-day wait before CS could even begin working on them. After: T1 disputes resolved immediately on mutual agreement. T2 CS response: 24–48h. The 2-day baseline became the upper bound for the most common tier, not the floor for all disputes.</div>
+        <div class="metric-desc">Before: all disputes required a minimum 2-day wait before CS could begin. After: T1 disputes resolved immediately on mutual agreement. The 2-day baseline became the upper bound for T2 cases — not the floor for everything.</div>
       </div>
       <div class="metric-card">
         <div class="metric-value">Tiered</div>
         <div class="metric-label">Resolution time by tier</div>
-        <div class="metric-desc">T1 self-resolution: immediate upon agreement. T2 CS resolution: 24–48h from escalation. T3 platform arbitration: 36–72h, required only in rare edge cases. The system collapsed time for the majority while preserving capacity for complexity.</div>
+        <div class="metric-desc">T1: immediate upon agreement. T2 CS resolution: 24–48h from escalation. T3 platform arbitration: 36–72h, rare edge cases only. The system collapsed time for the majority while preserving capacity for complexity.</div>
       </div>
       <div class="metric-card">
         <div class="metric-value">Zero</div>
@@ -1202,18 +1082,18 @@
       </div>
     </div>
 
-    <div class="guardrail-box">
+    <div class="guardrail-box mt-6">
       <div class="guardrail-title">Guardrails — these must not move in the wrong direction</div>
       <div class="guardrail-item">Fund release accuracy: no disputed funds released to the wrong party. Any mis-release is a critical incident regardless of amount.</div>
       <div class="guardrail-item">T1 abuse rate: users gaming the dispute system to delay legitimate trades must not exceed a threshold that undermines counterparty trust in P2P.</div>
-      <div class="guardrail-item">CS workload: T2 volume must not increase as a % of total disputes post-launch. If CS is handling more disputes proportionally, T1 is not working as designed.</div>
-      <div class="guardrail-item">Risk profile integrity: risk tier downgrades for repeat dispute actors must be reviewed quarterly to ensure the signal remains accurate and isn't producing false positives against legitimate traders.</div>
+      <div class="guardrail-item">CS workload as % of total disputes: must not increase post-launch. If CS is handling more disputes proportionally, T1 is not working as designed.</div>
+      <div class="guardrail-item">Risk engine integrity: tier downgrades for repeat dispute actors must be reviewed quarterly to prevent false positives against legitimate traders.</div>
     </div>
   </div>
 </section>
 
 <!-- ── Pre-mortem ── -->
-<section id="premortem">
+<section id="premortem" class="section-light">
   <div class="container">
     <span class="section-label">09 Pre-Mortem</span>
     <h2>What could go wrong</h2>
@@ -1223,36 +1103,36 @@
       <div class="pm-card">
         <div class="pm-type tiger">🐯 Tiger — real problem</div>
         <div class="pm-title">Dispute system used as a delay mechanism</div>
-        <div class="pm-body">A bad actor raises a dispute on a legitimate trade — not because there's a real problem, but to hold up fund release while they execute another transaction. T1 gives them a 24h window before CS is even triggered. At scale, this becomes a systematic exploit.</div>
-        <div class="pm-mitigation"><strong>Mitigation:</strong> Dispute frequency monitoring per user. Repeat dispute actors — especially those whose disputes consistently resolve against them — are flagged in the risk engine and their trade limits reduced. Accounts with patterns of bad-faith disputes are blocked. The risk profile feedback loop makes abuse structurally costly.</div>
+        <div class="pm-body">A bad actor raises a dispute on a legitimate trade — not because there's a real problem, but to hold up fund release while executing another transaction. T1 gives them a 24h window before CS is even triggered. At scale, this becomes a systematic exploit.</div>
+        <div class="pm-mitigation"><strong>Mitigation:</strong> Dispute frequency monitoring per user. Repeat actors — especially those whose disputes consistently resolve against them — are flagged in the risk engine and trade limits reduced. Accounts with patterns of bad-faith disputes are blocked. The risk profile feedback loop makes abuse structurally costly.</div>
       </div>
 
       <div class="pm-card">
         <div class="pm-type tiger">🐯 Tiger — real problem</div>
         <div class="pm-title">T1 chat becomes evidence-fabrication ground</div>
-        <div class="pm-body">A counterparty uses the T1 chat to create a misleading paper trail — selectively sharing information to manipulate CS when T2 is triggered. Without immutable logging, CS sees a version of events curated by the bad actor.</div>
+        <div class="pm-body">A counterparty uses the T1 chat to create a misleading paper trail — selectively sharing information to manipulate the CS decision at T2. Without immutable logging, CS sees a version of events curated by the bad actor.</div>
         <div class="pm-mitigation"><strong>Mitigation:</strong> T1 chat is timestamped, immutable, and fully visible to CS at T2. Neither party can edit or delete messages. The chat log is the source of truth for all escalation decisions. CS also has access to the full transaction history and KYC profile — not just the chat.</div>
       </div>
 
       <div class="pm-card">
         <div class="pm-type elephant">🐘 Elephant — unspoken risk</div>
         <div class="pm-title">High-volume sellers lose confidence in platform fairness</div>
-        <div class="pm-body">If Tier 3 users — the high-KYC, high-volume traders who create P2P liquidity — feel the dispute system is biased against sellers or that CS decisions are opaque, they exit quietly. No complaint. Just reduced volume, then departure.</div>
-        <div class="pm-mitigation"><strong>Mitigation:</strong> T3 decisions are documented with reasoning. Both parties receive a decision summary — not just an outcome. High-tier users have access to founder-level escalation, which is both a trust signal and a structural check on CS decision quality. Monitoring T3 repeat actors from the same side (buyer or seller) is an early warning signal.</div>
+        <div class="pm-body">If Tier 3 KYC users — the high-volume traders who create P2P liquidity — feel the dispute system is biased against sellers, or that CS decisions are opaque, they exit quietly. No complaint. Just reduced volume, then departure.</div>
+        <div class="pm-mitigation"><strong>Mitigation:</strong> T3 decisions are documented with reasoning — both parties receive a decision summary, not just an outcome. High-tier users have access to founder-level escalation as a structural check on CS decision quality. Monitoring T3 repeat actors from the same side is an early warning signal.</div>
       </div>
 
       <div class="pm-card">
         <div class="pm-type tiger">🐯 Tiger — manageable</div>
-        <div class="pm-title">Escrow hold damages trust more than the dispute itself</div>
-        <div class="pm-body">A user whose funds are correctly escrowed during a legitimate delay — not a real dispute — perceives the platform as the problem. The escrow mechanism designed to protect them feels like the platform is blocking their money.</div>
-        <div class="pm-mitigation"><strong>Mitigation:</strong> Escrow UI must communicate clearly: "Your funds are protected — not frozen." Status updates at each tier change. Estimated resolution time shown at T1 and T2. The experience of fund protection must feel like safety, not punishment.</div>
+        <div class="pm-title">Escrow hold perceived as punishment, not protection</div>
+        <div class="pm-body">A user whose funds are correctly escrowed during a legitimate payment delay — not a real dispute — perceives the platform as blocking their money. The protection mechanism designed to help them reads as the problem.</div>
+        <div class="pm-mitigation"><strong>Mitigation:</strong> Escrow UI must communicate clearly: "Your funds are protected — not frozen." Status updates at each tier change. Estimated resolution time surfaced at T1 and T2. The experience of escrow must feel like safety, not penalty.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── What I'd Validate Next ── -->
-<section id="validate">
+<!-- ── Validate Next ── -->
+<section id="validate" class="section-dark">
   <div class="container">
     <span class="section-label">10 What I'd Validate Next</span>
     <h2>The questions shipping would answer — and what we built after</h2>
@@ -1261,30 +1141,30 @@
     <div class="validate-grid">
       <div class="validate-card">
         <div class="validate-title">Fraud pattern detection at the dispute level</div>
-        <div class="validate-body">The risk engine governed trade limits and KYC tiers. But it did not yet analyse dispute-level patterns — specific transaction types, counterparty combinations, or payment methods that correlated with bad-faith disputes. The next layer was building a fraud signal at the dispute level: what does a weaponised dispute look like before CS notices? This became a subsequent build, layering dispute behaviour signals into the risk profiling engine that already governed the platform.</div>
+        <div class="validate-body">The risk engine governed trade limits and KYC tiers — but it didn't yet analyse dispute-level patterns: specific transaction types, counterparty combinations, or payment methods that correlated with bad-faith disputes. The next layer was building a fraud signal at the dispute level — what does a weaponised dispute look like before CS notices? This became a subsequent build, layering dispute behaviour signals into the same risk profiling engine that already governed the platform.</div>
       </div>
       <div class="validate-card">
         <div class="validate-title">Automated resolution for low-value disputes</div>
-        <div class="validate-body">Not all disputes needed a human in the loop. A payment confirmation dispute on a £15 trade, between two Tier 3 KYC-verified users, with a matching transaction reference — this could be auto-resolved with high confidence. The question was: what is the right value threshold, the right risk profile combination, and the right evidence signal to trigger automated release without CS? Defining those parameters safely — and building the automated path — was validated and shipped as a subsequent feature.</div>
+        <div class="validate-body">Not all disputes needed a human in the loop. A payment confirmation dispute between two Tier 3 KYC-verified users, with a matching transaction reference — this could be auto-resolved with high confidence. The question was: what is the right value threshold, risk profile combination, and evidence signal to trigger automated release safely? Defining those parameters and building the automated path was validated and shipped as a subsequent feature.</div>
       </div>
       <div class="validate-card">
         <div class="validate-title">Seller reputation scoring</div>
-        <div class="validate-body">P2P liquidity depends on seller reliability. A buyer choosing between two sellers with similar offers has no signal beyond the transaction. Dispute history — how often a seller is disputed, how disputes resolve, response time in T1 chat — is exactly the data that would power a reputation layer. This was identified at launch as the next trust-building feature. A seller's dispute record would surface as a lightweight score visible at the point of trade matching, giving buyers a signal and incentivising sellers to resolve at T1.</div>
+        <div class="validate-body">P2P liquidity depends on seller reliability. A buyer choosing between two sellers with similar offers has no signal beyond the transaction itself. Dispute history — how often a seller is disputed, how disputes resolve, response time in T1 chat — is exactly the data that powers a reputation layer. This was identified at launch as the next trust-building feature: a seller's dispute record surfaced as a lightweight score visible at the point of trade matching, giving buyers a signal and incentivising sellers to resolve at T1.</div>
       </div>
       <div class="validate-card">
-        <div class="validate-title">T1 resolution rate by dispute type</div>
-        <div class="validate-body">We tracked CS deflection in aggregate. The next question was: which categories of dispute consistently fail at T1 and escalate to T2? If payment confirmation disputes self-resolve at 95% but "goods not received" escalate at 80%, those two dispute types require different T1 tooling — perhaps structured evidence templates rather than open chat, or a shorter auto-escalation window. Segmenting resolution rate by dispute type was the data foundation for making T1 smarter.</div>
+        <div class="validate-title">T1 resolution rate segmented by dispute type</div>
+        <div class="validate-body">We tracked CS deflection in aggregate. The next question was: which categories of dispute consistently fail at T1 and escalate to T2? If payment confirmation disputes self-resolve at 95% but "funds not received" cases escalate at 80%, those two dispute types need different T1 tooling — structured evidence templates rather than open chat, or a shorter auto-escalation window. Segmenting resolution rate by dispute category was the data foundation for making T1 smarter over time.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── Closing ── -->
-<section id="closing" style="padding: 4rem 0; border-bottom: none;">
-  <div class="container" style="text-align: center;">
-    <h2 style="margin-bottom: 1rem;">P2P trust isn't a policy.<br>It's infrastructure.</h2>
-    <p style="max-width: 520px; margin: 0 auto 2rem; font-size: 1rem;">Cleared reduced CS involvement from 100% of disputes to 10% — not by hiring, but by designing a resolution system that respected user agency, risk profile, and the actual complexity of each case.</p>
-    <a class="hero-cta" href="mailto:vidhigupta@email.com">Get in touch →</a>
+<section id="closing">
+  <div class="container">
+    <h2>P2P trust isn't a policy.<br>It's infrastructure.</h2>
+    <p>Cleared reduced CS involvement from 100% of disputes to 10% — not by hiring, but by designing a resolution system that respected user agency, risk profile, and the actual complexity of each case.</p>
+    <a class="btn-primary" href="mailto:vidhi@email.com">Get in touch →</a>
   </div>
 </section>
 
